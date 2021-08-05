@@ -1,0 +1,33 @@
+.bl-color-1{border-left:3px solid #00C1EE;}
+.bl-color-2{border-left:3px solid #D1335B;}
+.bl-color-3{border-left:3px solid #9DBF15;}
+.bl-color-4{border-left:3px solid #ffff00;}
+.bl-color-5{border-left:3px solid #A939B9;}
+.bl-color-6{border-left:3px solid #0000ff;}
+.bl-color-7{border-left:3px solid #00ffff;}
+.bl-color-10{border-left:3px solid #3D4D65;}
+
+
+.buy-color{background-color: #bde619!important;border-color: #bde619!important;}
+.buy-color:hover{background-color: #9dbf15!important;border-color: #9dbf15!important;}
+.buy-color:focus{background-color: #9dbf15!important;border-color: #9dbf15!important;}
+.buy-color:disabled{background-color: #9dbf15!important;border-color: #9dbf15!important;}
+
+
+.z_video{border-radius: 5px;overflow: hidden;background-color: #f2f2f2;border: 1px solid #C9D3DF;box-shadow: 0 10px 10px -10px #b6c4d5;padding: 5px 5px 0px 5px;}
+.x_video{border-radius: 5px;overflow: hidden;height: 100%;outline: none;box-sizing: border-box;}
+.done_video{border-radius: 5px;}
+
+.btn-centers{display: flex;justify-content: center;}
+.buy_color_new{background-color: #3D4D65!important;border-color: #3D4D65!important;}
+.buy_color_new:hover{background-color: #303d50!important;border-color: #303d50!important;}
+.buy_color_new:focus{background-color: #303d50!important;border-color: #303d50!important;}
+.buy_color_new:disabled{background-color: #303d50!important;border-color: #303d50!important;}
+
+
+
+.card-body-overflow{overflow: auto!important;}
+
+
+
+.nowraping{white-space: nowrap;}
