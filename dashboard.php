@@ -1,5 +1,8 @@
 <?php
-
+session_start();
+if(!isset($_SESSION['email'])){
+ die();
+}
   // Create connection
   include 'config.php';
   $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
@@ -7,7 +10,7 @@
   if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
   }
-  $sql = "SELECT id,project_name,salary FROM admin_panel";
+  $sql = "SELECT id,name,price FROM products";
   $result = mysqli_query($conn, $sql);
 
 
@@ -118,14 +121,15 @@
               <div class="list-group-item list-group-item-action bl-color-<?php echo rand(1,5) ; ?>">
                 <div class="media">
                   <div class="media-body text-truncate">
-                    <p class="mb-0"><strong class="text-primary"><span><?php echo $row['project_name']; ?></span></strong></p>
-                    <p class="mb-0 text-sm"><?php echo $row['salary']; ?></p>
+                    <p class="mb-0"><strong class="text-primary"><span><?php echo $row['name']; ?></span></strong></p>
+                    <p class="mb-0 text-sm"><?php echo $row['price']; ?></p>
                   </div>
                   <div class="dt-buttons btn-group">
                     <a href="info.php?id=<?php echo $row['id'];?>">
                       <button class="btn btn-default buttons-copy buttons-html5 btn-info mr-2"> <span>Info</span> </button>
                     </a>
-                    <a href="perfectmoney_pay.php?id=<?php echo $row['id'];?>">
+                    <!-- <a href="perfectmoney_pay.php?id=<?php // echo $row['id'];?>"> -->
+                    <a href="currency.php?id=<?php echo $row['id'] ;  ?>" >
                       <button class="btn btn-default buttons-csv buttons-html5 btn-info buy-color"> <span>Buy</span> </button>
                     </a>
                   </div>
@@ -147,8 +151,8 @@
               <div class="list-group-item list-group-item-action bl-color-1">
                 <div class="media">
                   <div class="media-body text-truncate">
-                    <p class="mb-0"><strong class="text-primary"><span><?php  echo $row['project_name'];?></span></strong></p>
-                    <p class="mb-0 text-sm"><?php echo $row['salary'];?></p>
+                    <p class="mb-0"><strong class="text-primary"><span><?php  echo $row['name'];?></span></strong></p>
+                    <p class="mb-0 text-sm"><?php echo $row['price'];?></p>
                   </div>
                   <div class="dt-buttons btn-group">
                     <a href="info.php?id=<?php echo $row['id'];?>">

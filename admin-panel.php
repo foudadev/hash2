@@ -24,8 +24,9 @@
             $fileTmpName  = $_FILES['file']['tmp_name'];
             $path         = "files/".$fileName;
     
-        if (!empty($project_name && $video_link && $salary && $feauture1 && $fileName)) {
-            $query = "INSERT INTO admin_panel(filename,project_name,video_link,salary,feauture1,feauture2,feauture3,feauture4,feauture5)
+        if (!empty($project_name && $video_link && $salary && $feauture1 && $fileName && $feauture2 && $feauture3 && $feauture4 && $feauture5)) {
+
+            $query = "INSERT INTO products(filename,name,video_link,price,feauture1,feauture2,feauture3,feauture4,feauture5)
          VALUES ('$fileName','$project_name','$video_link','$salary','$feauture1','$feauture2','$feauture3','$feauture4','$feauture5')";
             $run = mysqli_query($conn, $query);
         
@@ -35,7 +36,56 @@
             } else {
                 echo "error".mysqli_error($conn);
             }
-        }else{
+        }elseif(!empty($project_name && $video_link && $salary && $feauture1 && $fileName && $feauture2 && $feauture3 && $feauture4)){
+
+            $query = "INSERT INTO products(filename,name,video_link,price,feauture1,feauture2,feauture3,feauture4)
+         VALUES ('$fileName','$project_name','$video_link','$salary','$feauture1','$feauture2','$feauture3','$feauture4')";
+            $run = mysqli_query($conn, $query);
+        
+            if ($run) {
+                move_uploaded_file($fileTmpName, $path);
+                echo "success";
+            } else {
+                echo "error".mysqli_error($conn);
+            }
+        }elseif(!empty($project_name && $video_link && $salary && $feauture1 && $fileName && $feauture2 && $feauture3)){
+
+            $query = "INSERT INTO products(filename,name,video_link,price,feauture1,feauture2,feauture3)
+         VALUES ('$fileName','$project_name','$video_link','$salary','$feauture1','$feauture2','$feauture3')";
+            $run = mysqli_query($conn, $query);
+        
+            if ($run) {
+                move_uploaded_file($fileTmpName, $path);
+                echo "success";
+            } else {
+                echo "error".mysqli_error($conn);
+            }
+        }elseif(!empty($project_name && $video_link && $salary && $feauture1 && $fileName && $feauture2)){
+
+            $query = "INSERT INTO products(filename,name,video_link,price,feauture1,feauture2)
+         VALUES ('$fileName','$project_name','$video_link','$salary','$feauture1','$feauture2')";
+            $run = mysqli_query($conn, $query);
+        
+            if ($run) {
+                move_uploaded_file($fileTmpName, $path);
+                echo "success";
+            } else {
+                echo "error".mysqli_error($conn);
+            }
+        }elseif(!empty($project_name && $video_link && $salary && $feauture1 && $fileName )){
+            
+            $query = "INSERT INTO products(filename,name,video_link,price,feauture1)
+         VALUES ('$fileName','$project_name','$video_link','$salary','$feauture1')";
+            $run = mysqli_query($conn, $query);
+        
+            if ($run) {
+                move_uploaded_file($fileTmpName, $path);
+                echo "success";
+            } else {
+                echo "error".mysqli_error($conn);
+            }
+        }
+        else{
             $msg = "Please Enter All Data  ";
             echo '<script type="text/javascript">alert("' . $msg . '")</script>';
         }
@@ -60,7 +110,7 @@
                      <label for="lname">feauture1:</label><br>
                      <input type="text" id="lname" name="feauture1"><br>
                      <label for="lname">feauture2:</label><br>
-                     <input type="text" id="lname" name="feauture2"><br>
+                     <input type="text" id="lname" name="feauture2" ><br>
                      <label for="lname">feauture3:</label><br>
                      <input type="text" id="lname" name="feauture3"><br>
                      <label for="lname">feauture4:</label><br>

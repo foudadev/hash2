@@ -1,17 +1,17 @@
 <?php
-if(isset($_POST["email"], $_POST["password"])) {     
+if(isset($_POST['login'])) {     
     $email    = $_POST["email"]; 
-    $password = $_POST["password"]; 
+    $password1 = $_POST["password"]; 
 
                 // import database file
                 include 'config.php';
                 // data base connection
                 $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
                 // my query
-                $sql = "SELECT email, password1 FROM register WHERE email = '".$email."' AND  password1 = '".$password."'";
+                $sql = "SELECT email, password1 FROM register WHERE email = '".$email."' AND  password1 = '".$password1."'";
                // excute query
                 $result = mysqli_query($conn, $sql);
-                if($result){
+                if (mysqli_num_rows($result) > 0) {
                 // start session 
                 session_start();
                 $_SESSION['email'] = $email;
@@ -19,6 +19,7 @@ if(isset($_POST["email"], $_POST["password"])) {
                 header('location: http://localhost/hash2/account.php');
 
                 } else{
+                   echo $email . $password1 ;
                   $error_valadtion = "Please make sure email and password are correct";
                   //echo "<script>alert($error_valadtion);</script>";
                   echo $error_valadtion ;
@@ -83,7 +84,7 @@ if(isset($_POST["email"], $_POST["password"])) {
                      <div class="float-right"><a class="text-muted" href="reset-password.php">Forgot your password?</a>
                      </div>
                   </div>
-                  <button class="btn btn-block btn-primary mt-3" type="submit">Login</button>
+                  <button class="btn btn-block btn-primary mt-3" name="login" type="submit">Login</button>
                </form>
               
                <p class="pt-3 text-center">Need to Signup?</p><a class="btn btn-block btn-secondary" href="register.php">Register Now</a>

@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
      // download file  
      include 'config.php';
      $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
-     $result = "SELECT filename FROM admin_panel WHERE project_name = '".$filename."' ";
+     $result = "SELECT filename FROM products WHERE name = '".$filename."' ";
     $run = mysqli_query($conn, $result);
     while ($row = mysqli_fetch_assoc($run)) {
         $fileName  = basename($row['filename']);

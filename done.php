@@ -8,7 +8,7 @@ if (isset($_POST['test'])) {
     $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
     $sql  = "INSERT INTO orders (client_id,product_id,product_name) VALUES ('$user_id','$product_id','$product_name')";
      // download file  
-     $result = "SELECT filename FROM admin_panel WHERE id = '".$product_id."' ";
+     $result = "SELECT filename FROM products WHERE id = '".$product_id."' ";
     $run = mysqli_query($conn, $result);
 
     while ($row = mysqli_fetch_assoc($run)) {

@@ -5,19 +5,20 @@ $product_id = $_GET['id'];
 // Create connection
 include 'config.php';
 $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
-// Check connection
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-  $sql = "SELECT id,project_name,salary FROM admin_panel WHERE id = '".$product_id."'";
+
+// my query 
+  $sql = "SELECT id,name,price FROM products WHERE id = '".$product_id."'";
   $result = mysqli_query($conn, $sql);
+// check result
   if (mysqli_num_rows($result) > 0) {
-   while($row = mysqli_fetch_assoc($result)) {
-    $product_name   =  $row["project_name"];
-    $product_salary =  $row["salary"];
-   }
-}
-      
+    while($row = mysqli_fetch_assoc($result)) {
+
+    $product_name   =  $row["name"];
+    $product_salary =  $row["price"];
+   
+  }
+}  
+   
 ?>
 
 <!DOCTYPE html>

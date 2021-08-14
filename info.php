@@ -98,7 +98,7 @@
     die("Connection failed: " . mysqli_connect_error());
   }
   $id = $_GET['id'];
-  $sql = "SELECT * FROM admin_panel WHERE id='$id'";
+  $sql = "SELECT * FROM products WHERE id='$id'";
   $result = mysqli_query($conn, $sql);
 
  ?>
@@ -112,7 +112,7 @@
      // output data of each row
       while ($row = mysqli_fetch_assoc($result)) {
           ?>
-                  <div class="card-title"><?php  echo "Video - " . $row['project_name']; ?></div>
+                  <div class="card-title"><?php  echo "Video - " . $row['name']; ?></div>
                 </div>
                 <div class="list-group-item list-group-item-action bl-color-1 p-1">
                   <div class="media">
@@ -130,7 +130,7 @@
           <div class="col-md-6">
             <div class="card card-default">
               <div class="card-header">
-                <div class="card-title"><?php echo "Features - ".$row['project_name'];?></div>
+                <div class="card-title"><?php echo "Features - ".$row['name'];?></div>
               </div>
 
               <div class="list-group-item list-group-item-action bl-color-1">
@@ -179,7 +179,7 @@
               <div class="list-group-item list-group-item-action bl-color-10">
                 <div class="dt-buttons btn-group btn-centers">
                     <a href="perfectmoney_pay.php?id=<?php echo $row['id'];?>">
-                      <button class="btn btn-default buttons-csv buttons-html5 btn-info buy_color_new"> <span><?php echo "Buy For $" . $row['salary']; ?></span> </button>
+                      <button class="btn btn-default buttons-csv buttons-html5 btn-info buy_color_new"> <span><?php echo "Buy For $" . $row['price']; ?></span> </button>
                     </a>
                   </div>
                   <?php

@@ -1,18 +1,16 @@
 <?php
 session_start();
- // $pass_old   = $_POST['password_old'];
- // $pass_new   = $_POST['password_new'];
- // $pass_ver   = $_POST['password_ver'];
+if(!isset($_SESSION['email'])){
+ die();
+}
+
   // server data conection
   $email = $_SESSION['email'];
 
       // Create connection
       include 'config.php';
       $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
-      // Check connection
-      if (!$conn) {
-          die("Connection failed: " . mysqli_connect_error());
-      }
+
       // excute query
       $sql = "SELECT id FROM register WHERE email = '".$email."'";
       $result = mysqli_query($conn, $sql);
@@ -22,13 +20,37 @@ session_start();
         }
       }
       mysqli_close($conn);
+
+      if(isset($_POST['submit'])){
+         $pass_old   = $_POST['password_old'];
+         $pass_new   = $_POST['password_new'];
+         $pass_ver   = $_POST['password_ver'];
+
+         if($pass_new !== $pass_ver){
+          echo '<script>alert(" new password and confirm password not matched!");</script>';
+          header( "refresh:1;url=account.php" );
+          exit ;
+         }
+
+      $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
+      $query = "UPDATE register SET password1	  = '".$pass_new."' WHERE email = '".$_SESSION['email']."' AND password1 = '".$pass_old."'";
+      $result = mysqli_query($conn,$query);
+      if($result){
+        echo '<script>alert("Added Done Succesfully!");</script>';
+        header( "refresh:1;url=account.php" );
+      }else{
+        echo '<script>alert("please check old password!");</script>';
+        header( "refresh:1;url=account.php" );
+      }
+  }
       
 ?>
 
 <?PHP
 // Domain crud 
-$domain = $_POST['domain'];
-if(isset($domain)){
+$domain_name = $_POST['domain'];
+if(isset($domain_name)){
+  $file_name = $_GET['file'];
   // filter input 
   //$domain_name  = preg_replace($bad_pattern='/[\/:*?"<>|]/',"",$domain);
   // update query
@@ -37,15 +59,11 @@ if(isset($domain)){
   $query = "UPDATE orders SET domain  = '".$domain_name."' WHERE client_id = '".$_SESSION['id']."' AND product_name = '".$file_name."'";
   $result = mysqli_query($conn,$query);
   if($result){
-    echo '<script>alert("Update Done Succesfully!");</script>';
+    echo '<script>alert("Added Done Succesfully!");</script>';
     header( "refresh:1;url=account.php" );
-  }/*else{
-    // insert domain
-    $query = "INSERT INTO orders (domain) VALUES ('".$domain_name."')";
-    $result = mysqli_query($conn,$query);
-    if($result){
-      echo '<script>alert(" Domain Added Succesfully!");</script>';
-    }*/
+
+    //header('location: http://localhost/hash2/account.php');
+   }
   }
 
 
@@ -196,10 +214,7 @@ if(isset($domain)){
    //echo $user_id ;
    include "config.php";
    $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
-   // Check connection
-      if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
+   
        // excute query
        $sql = "SELECT product_name,domain FROM orders WHERE client_id = '".$user_id."'";
        $result = mysqli_query($conn, $sql);
