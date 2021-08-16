@@ -1,5 +1,4 @@
 <?php
-if (isset($_POST['test'])) {
     $product_id   = $_GET['id'];
     $user_id      = $_GET['user_id'];
     $product_name = $_GET['product'];
@@ -7,6 +6,7 @@ if (isset($_POST['test'])) {
     include 'config.php';
     $conn = mysqli_connect($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['dbname']);
     $sql  = "INSERT INTO orders (client_id,product_id,product_name) VALUES ('$user_id','$product_id','$product_name')";
+    mysqli_query($conn,$sql);
      // download file  
      $result = "SELECT filename FROM products WHERE id = '".$product_id."' ";
     $run = mysqli_query($conn, $result);
@@ -30,4 +30,3 @@ if (isset($_POST['test'])) {
             echo "file not exit";
         }
     }
-}

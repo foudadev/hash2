@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['email'])){
+  header( "refresh:1;url=index.php" );
  die();
 }
   // Create connection

@@ -13,9 +13,9 @@ if(!isset($_GET['id'])){
 $id = mysqli_real_escape_string($conn, $_GET['id']);
 
 $price = getPrice($id);
-var_dump($price);
+//var_dump($price);
 $code = createInvoice($id, $price);
-var_dump($code);
+//var_dump($code);
 
 echo "<script>window.location='invoice.php?code=".$code."'</script>";
 ?>
